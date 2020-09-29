@@ -1,5 +1,8 @@
+import 'package:app/main.dart';
+import 'package:app/modal/todo.dart';
 import 'package:app/util/constant.dart' as Constant;
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AddTodo extends StatefulWidget {
   @override
@@ -8,6 +11,7 @@ class AddTodo extends StatefulWidget {
 
 class _AddTodoState extends State<AddTodo> {
   final _formKey = GlobalKey<FormState>();
+  final titleController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +27,7 @@ class _AddTodoState extends State<AddTodo> {
             child: Column(
               children: [
                 TextFormField(
+                  controller: titleController,
                   decoration: InputDecoration(
                     labelText: 'Title',
                   ),
@@ -42,6 +47,8 @@ class _AddTodoState extends State<AddTodo> {
                     textColor: Theme.of(context).colorScheme.onPrimary,
                     onPressed: () {
                       if (_formKey.currentState.validate()) {
+                        Provider.of<AppContext>(context, listen: false).addTodo(
+                            Todo(title: titleController.text, isCheck: false));
                         Navigator.of(context).pop();
                       }
                     },
