@@ -1,6 +1,7 @@
 import 'package:app/modal/todo.dart';
-import 'package:flutter/material.dart';
+import 'package:app/screen/add-todo.dart';
 import 'package:app/util/constant.dart' as Constant;
+import 'package:flutter/material.dart';
 
 class TodoList extends StatefulWidget {
   @override
@@ -55,9 +56,11 @@ class _TodoListState extends State<TodoList> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          setState(() {
-            todoList.add(Todo(isCheck: false, title: "Hello world"));
-          });
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (ctx) => AddTodo()));
+          //setState(() {
+          //  todoList.add(Todo(isCheck: false, title: "Hello world"));
+          //});
         },
         tooltip: 'Add todo',
         child: Icon(Icons.add),
