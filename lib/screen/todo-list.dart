@@ -58,9 +58,6 @@ class _TodoListState extends State<TodoList> {
         onPressed: () {
           Navigator.of(context)
               .push(MaterialPageRoute(builder: (ctx) => AddTodo()));
-          //setState(() {
-          //  todoList.add(Todo(isCheck: false, title: "Hello world"));
-          //});
         },
         tooltip: 'Add todo',
         child: Icon(Icons.add),
