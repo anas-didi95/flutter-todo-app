@@ -1,3 +1,4 @@
+import 'package:app/component/todo-item.dart';
 import 'package:app/main.dart';
 import 'package:app/screen/add-todo.dart';
 import 'package:app/screen/todo-archive.dart';
@@ -31,30 +32,13 @@ class _TodoListState extends State<TodoList> {
         ],
       ),
       body: ListView.builder(
-        padding: EdgeInsets.all(8),
-        itemCount: todoList.length,
-        itemBuilder: (ctx, i) {
-          return Card(
-              margin: EdgeInsets.all(4),
-              child: ListTile(
-                title: Text('$i: ${todoList[i].title}'),
-                trailing: (todoList[i].isCheck
-                    ? Icon(Icons.check_box,
-                        color: Constant.COLOR_THEME[Constant.COLOR_NO_TICK])
-                    : Icon(Icons.check_box_outline_blank)),
-                onTap: () {
-                  setState(() {
-                    todoList[i].isCheck = !todoList[i].isCheck;
-                  });
-                },
-              ));
-        },
-      ),
+          padding: EdgeInsets.all(8),
+          itemCount: todoList.length,
+          itemBuilder: (ctx, i) => TodoItem(todo: todoList[i], idx: i)),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context)
               .push(MaterialPageRoute(builder: (ctx) => AddTodo()));
-          //});
         },
         tooltip: 'Add todo',
         child: Icon(Icons.add),

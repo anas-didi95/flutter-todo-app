@@ -1,3 +1,4 @@
+import 'package:app/component/todo-item.dart';
 import 'package:app/main.dart';
 import 'package:app/util/constant.dart' as Constant;
 import 'package:flutter/material.dart';
@@ -19,11 +20,13 @@ class _TodoArchiveState extends State<TodoArchive> {
           title: Text("Todo Archive"),
           backgroundColor: Constant.COLOR_THEME[Constant.COLOR_NO_APP_BAR],
         ),
-        body: ListView.separated(
+        body: ListView.builder(
           padding: EdgeInsets.all(8),
           itemCount: todoList.length,
-          itemBuilder: (_, i) => Text("Item $i"),
-          separatorBuilder: (_, i) => Divider(),
+          itemBuilder: (_, i) => TodoItem(
+            todo: todoList[i],
+            idx: i,
+          ),
         ));
   }
 }
