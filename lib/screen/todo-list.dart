@@ -1,5 +1,6 @@
 import 'package:app/main.dart';
 import 'package:app/screen/add-todo.dart';
+import 'package:app/screen/todo-archive.dart';
 import 'package:app/util/constant.dart' as Constant;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -22,7 +23,10 @@ class _TodoListState extends State<TodoList> {
         actions: [
           IconButton(
             icon: Icon(Icons.archive),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (_) => TodoArchive()));
+            },
           )
         ],
       ),
