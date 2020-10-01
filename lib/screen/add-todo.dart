@@ -47,7 +47,7 @@ class _AddTodoState extends State<AddTodo> {
                     textColor: Theme.of(context).colorScheme.onPrimary,
                     onPressed: () {
                       if (_formKey.currentState.validate()) {
-                        Provider.of<AppContext>(context, listen: false).addTodo(
+                        context.read<AppContext>().addTodo(
                             Todo(title: titleController.text, isCheck: false));
                         Navigator.of(context).pop();
                       }
