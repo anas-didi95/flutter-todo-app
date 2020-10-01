@@ -12,6 +12,9 @@ class TodoList extends StatefulWidget {
 class _TodoListState extends State<TodoList> {
   @override
   Widget build(BuildContext context) {
+    AppContext appContext = context.watch<AppContext>();
+    var todoList = appContext.todoList;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Todo List'),
@@ -23,30 +26,24 @@ class _TodoListState extends State<TodoList> {
           )
         ],
       ),
-      body: Consumer<AppContext>(
-        builder: (buildContext, appContext, child) {
-          var todoList = appContext.todoList;
-
-          return ListView.builder(
-            padding: EdgeInsets.all(8),
-            itemCount: todoList.length,
-            itemBuilder: (ctx, i) {
-              return Card(
-                  margin: EdgeInsets.all(4),
-                  child: ListTile(
-                    title: Text('$i: ${todoList[i].title}'),
-                    trailing: (todoList[i].isCheck
-                        ? Icon(Icons.check_box,
-                            color: Constant.COLOR_THEME[Constant.COLOR_NO_TICK])
-                        : Icon(Icons.check_box_outline_blank)),
-                    onTap: () {
-                      setState(() {
-                        todoList[i].isCheck = !todoList[i].isCheck;
-                      });
-                    },
-                  ));
-            },
-          );
+      body: ListView.builder(
+        padding: EdgeInsets.all(8),
+        itemCount: todoList.length,
+        itemBuilder: (ctx, i) {
+          return Card(
+              margin: EdgeInsets.all(4),
+              child: ListTile(
+                title: Text('$i: ${todoList[i].title}'),
+                trailing: (todoList[i].isCheck
+                    ? Icon(Icons.check_box,
+                        color: Constant.COLOR_THEME[Constant.COLOR_NO_TICK])
+                    : Icon(Icons.check_box_outline_blank)),
+                onTap: () {
+                  setState(() {
+                    todoList[i].isCheck = !todoList[i].isCheck;
+                  });
+                },
+              ));
         },
       ),
       floatingActionButton: FloatingActionButton(
