@@ -14,10 +14,10 @@ class TodoItem extends StatelessWidget {
         margin: EdgeInsets.all(4),
         child: ListTile(
           title: Text('$idx: ${todo.title}'),
-          trailing: (todo.isCheck
-              ? Icon(Icons.check_box,
-                  color: Constant.COLOR_THEME[Constant.COLOR_NO_TICK])
-              : Icon(Icons.check_box_outline_blank)),
+          //trailing: (todo.isCheck
+          //    ? Icon(Icons.check_box,
+          //        color: Constant.COLOR_THEME[Constant.COLOR_NO_TICK])
+          //    : Icon(Icons.check_box_outline_blank)),
         ));
   }
 }

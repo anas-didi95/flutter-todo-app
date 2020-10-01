@@ -13,18 +13,24 @@ class _TodoArchiveState extends State<TodoArchive> {
   @override
   Widget build(BuildContext context) {
     AppContext appContext = context.watch<AppContext>();
-    var todoList = appContext.todoList;
+    var archiveList = appContext.archiveList;
 
     return Scaffold(
         appBar: AppBar(
           title: Text("Todo Archive"),
           backgroundColor: Constant.COLOR_THEME[Constant.COLOR_NO_APP_BAR],
+          actions: [
+            IconButton(
+                icon: Icon(Icons.clear_all),
+                tooltip: 'Clear All',
+                onPressed: () => context.read<AppContext>().clearArchive())
+          ],
         ),
         body: ListView.builder(
           padding: EdgeInsets.all(8),
-          itemCount: todoList.length,
+          itemCount: archiveList.length,
           itemBuilder: (_, i) => TodoItem(
-            todo: todoList[i],
+            todo: archiveList[i],
             idx: i,
           ),
         ));
